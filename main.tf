@@ -24,6 +24,7 @@ resource "aws_vpn_connection" "default" {
 
   lifecycle {
     create_before_destroy = true
+    ignore_changes = "static_routes_only"
   }
 }
 
