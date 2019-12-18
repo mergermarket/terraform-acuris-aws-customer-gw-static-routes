@@ -51,15 +51,14 @@ resource "aws_route" "more_tables" {
       ),
     ),
   )
-  destination_cidr_block = element(
-    var.destination_cidr_blocks,
+  destination_cidr_block = var.destination_cidr_blocks[
     floor(
       count.index / max(
         length(var.route_table_ids),
         length(var.destination_cidr_blocks),
       ),
-    ),
-  )
+    )]
+  
   gateway_id = var.vpn_gateway_id
 
   lifecycle {
